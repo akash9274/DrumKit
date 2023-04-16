@@ -11,6 +11,7 @@ let beat7= new Audio('sounds/tom-4.mp3');
 document.addEventListener("keydown",function(event){
     var currKey=event.key;
     makeSound(currKey);
+    addAnimation(currKey);
 });
 
 var totalButton=document.querySelectorAll("button").length;
@@ -19,6 +20,7 @@ for(var i=0;i<totalButton;i++){
     document.querySelectorAll("button")[i].addEventListener("click",function(){
         var buttonText=this.innerHTML;
         makeSound(buttonText);
+        addAnimation(buttonText);
     });
 }
 
@@ -39,4 +41,12 @@ switch(currKey){
     case 'l':beat7.play();
     break;
 }
+}
+
+function addAnimation(currKey){
+    var currEle=document.querySelector("."+currKey);
+    currEle.classList.add("pressed");
+    setTimeout(function(){
+        currEle.classList.remove("pressed");
+    },300);
 }
